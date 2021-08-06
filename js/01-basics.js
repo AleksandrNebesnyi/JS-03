@@ -218,12 +218,23 @@ const atTheOldToad = {
   },
 
   addPotion(potionName) {
-    if (this.potions.includes(potionName)) {
-      return `Potion ${potionName} is already equipped!`;
+    for (const potion of this.potions) {
+      console.log(potion);
+      if (potion.name === potionName.name) {
+        potion.quantity += 1;
+        return;
+      }
     }
+    const newProduct = {
+      ...potionName,
+      quantity: 1,
+    };
+    console.table(newProduct);
 
-    this.potions.push(potionName);
+    this.potions.push(newProduct);
+    console.table(this.potions);
   },
+
   removePotion(potionName) {
     const potionIndex = this.potions.indexOf(potionName);
 
@@ -246,6 +257,9 @@ const atTheOldToad = {
 };
 atTheOldToad.getPotions();
 console.log(atTheOldToad.getPotions());
+
+atTheOldToad.addPotion({ name: "Invisibility", price: 620 });
+console.log(atTheOldToad.addPotion(potionName));
 
 // Выполни рефакторинг методов объекта atTheOldToad так, чтобы они работали не с массивом строк, а с массивом объектов.
 
