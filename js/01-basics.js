@@ -219,7 +219,7 @@ const atTheOldToad = {
 
   addPotion(potionName) {
     for (const potion of this.potions) {
-      console.log(potion);
+      // console.log(potion);
       if (potion.name === potionName.name) {
         potion.quantity += 1;
         return;
@@ -229,37 +229,55 @@ const atTheOldToad = {
       ...potionName,
       quantity: 1,
     };
-    console.table(newProduct);
+    // console.table(newProduct);
 
     this.potions.push(newProduct);
-    console.table(this.potions);
+    // console.table(this.potions);
   },
 
   removePotion(potionName) {
-    const potionIndex = this.potions.indexOf(potionName);
+    const { potions } = this;
 
-    if (potionIndex === -1) {
-      return `Potion ${potionName} is not in inventory!`;
+    for (let i = 0; i < potions.length; i += 1) {
+      const potion = potions[i];
+      // console.log(potion);
+
+      if (potionName === potion.name) {
+        console.log("нашли такой продукт ", potionName);
+        console.log("индекс: ", i);
+
+        potions.splice(i, 1);
+      }
     }
-
-    this.potions.splice(potionIndex, 1);
+    // console.table(potions);
   },
+
   updatePotionName(oldName, newName) {
-    const potionIndex = this.potions.indexOf(oldName);
+    const { potions } = this;
+    for (let i = 0; i < potions.length; i += 1) {
+      const potion = potions[i];
+      console.log(potion);
 
-    if (potionIndex === -1) {
-      return `Potion ${oldName} is not in inventory!`;
+      if (oldName === potion.name) {
+        console.log("нашли такой продукт ", oldName);
+        console.log("индекс: ", i);
+
+        potions.splice(i, 1, newName);
+      }
     }
-
-    this.potions.splice(potionIndex, 1, newName);
+    console.table(potions);
   },
   // Change code above this line
 };
-atTheOldToad.getPotions();
-console.log(atTheOldToad.getPotions());
+// atTheOldToad.getPotions();
+// console.log(atTheOldToad.getPotions());
 
-atTheOldToad.addPotion({ name: "Invisibility", price: 620 });
-console.log(atTheOldToad.addPotion(potionName));
+// atTheOldToad.addPotion({ name: "Invisibility", price: 620 });
+// console.log(atTheOldToad.getPotions());
+
+// console.table(atTheOldToad.removePotion("Speed potion"));
+atTheOldToad.updatePotionName("Dragon breath", "Polymorth");
+console.table(atTheOldToad.updatePotionName("Dragon breath", "Polymorth"));
 
 // Выполни рефакторинг методов объекта atTheOldToad так, чтобы они работали не с массивом строк, а с массивом объектов.
 
