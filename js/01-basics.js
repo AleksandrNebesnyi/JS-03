@@ -221,13 +221,13 @@ const atTheOldToad = {
     for (const potion of this.potions) {
       // console.log(potion);
       if (potion.name === potionName.name) {
-        potion.quantity += 1;
-        return;
+        // potion.quantity += 1;
+        // return;
       }
     }
     const newProduct = {
       ...potionName,
-      quantity: 1,
+      // quantity: 1,
     };
     // console.table(newProduct);
 
@@ -261,8 +261,9 @@ const atTheOldToad = {
       if (oldName === potion.name) {
         console.log("нашли такой продукт ", oldName);
         console.log("индекс: ", i);
+        potion.name = newName;
 
-        potions.splice(i, 1, newName);
+        // potions.splice(i, 1, newName);
       }
     }
     console.table(potions);
@@ -276,7 +277,7 @@ const atTheOldToad = {
 // console.log(atTheOldToad.getPotions());
 
 // console.table(atTheOldToad.removePotion("Speed potion"));
-atTheOldToad.updatePotionName("Dragon breath", "Polymorth");
+// atTheOldToad.updatePotionName("Dragon breath", "Polymorth");
 console.table(atTheOldToad.updatePotionName("Dragon breath", "Polymorth"));
 
 // Выполни рефакторинг методов объекта atTheOldToad так, чтобы они работали не с массивом строк, а с массивом объектов.
